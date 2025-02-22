@@ -1,0 +1,9 @@
+gesdinet_jwt_refresh_token:
+    refresh_token_class: App\Shared\Infrastructure\Symfony\Entity\RefreshToken
+    ttl: 2592000 # 30 days
+    firewall: api
+    ttl_update: true
+    single_use: true
+    return_expiration: true
+    token_parameter_name: refreshToken
+    return_expiration_parameter_name: refreshTokenExpiration

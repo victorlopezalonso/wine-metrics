@@ -1,0 +1,11 @@
+exception:
+  user_not_found: "Wrong credentials"
+  unauthorized: "Unauthorized"
+  forbidden: "Access denied"
+  user_already_exists: "User already exists"
+
+error:
+  internal_server_error: 'Internal server error'
+
+message:
+  user_created: "User created successfully"

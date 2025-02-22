@@ -1,0 +1,11 @@
+exception:
+  user_not_found: "El usuario no existe"
+  unauthorized: "No autorizado"
+  forbidden: "Acceso denegado"
+  user_already_exists: "El usuario ya existe"
+
+error:
+  internal_server_error: 'Se ha producido un error interno en el servidor'
+
+message:
+  user_created: "Usuario creado correctamente"

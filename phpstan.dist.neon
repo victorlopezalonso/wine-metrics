@@ -1,0 +1,10 @@
+parameters:
+    level: 6
+    paths:
+        - src
+        - tests
+    checkUninitializedProperties: false
+    inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue

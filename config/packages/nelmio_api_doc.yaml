@@ -1,0 +1,122 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: '%env(APP_NAME)%'
+            description: '%env(APP_DESCRIPTION)%'
+            version: '%env(APP_VERSION)%'
+
+        components:
+            securitySchemes:
+                Bearer:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+
+        security:
+            - Bearer: []
+
+        paths:
+            /api/v1/authentication:
+                post:
+                    summary: Authorize the user with credentials and return a combination of token and refresh token.
+                    description: Authorize the user with credentials and return a combination of token and refresh token.
+                    tags: [ "Authentication" ]
+                    requestBody:
+                        required: true
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        username:
+                                            type: string
+                                        password:
+                                            type: string
+                    responses:
+                        '200':
+                            description: successfully authenticated
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                            refreshToken:
+                                                type: string
+                                            refreshTokenExpiration:
+                                                type: string
+                        '401':
+                            description: Invalid credentials
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: int
+                                            message:
+                                                type: string
+                                    examples:
+                                        invalid_refresh_token:
+                                            summary: Invalid credentials.
+                                            value: {
+                                                "message": "Wrong credentials",
+                                                "error": {
+                                                    "message": "exception.user_not_found",
+                                                    "trace": "Error in file /app/src/Shared/Infrastructure/Symfony/Security/SecurityUserProvider.php at line 34"
+                                                }
+                                            }
+
+                put:
+                    summary: Refresh the user token and return a new combination of token and refresh token.
+                    description: Refresh the user token and return a new combination of token and refresh token.
+                    tags: [ "Authentication" ]
+                    requestBody:
+                        required: true
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        refreshToken:
+                                            type: string
+                    responses:
+                        '200':
+                            description: successful token refresh
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                            refreshToken:
+                                                type: string
+                                            refreshTokenExpiration:
+                                                type: string
+                        '401':
+                            description: An authentication exception occurred.
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: int
+                                            message:
+                                                type: string
+                                    examples:
+                                        invalid_refresh_token:
+                                            summary: Invalid refresh token
+                                            value: {
+                                                "message": "Wrong credentials",
+                                                "error": {
+                                                    "message": "exception.user_not_found",
+                                                    "trace": "Error in file /app/src/Shared/Infrastructure/Symfony/Security/SecurityUserProvider.php at line 34"
+                                                }
+                                            }
+
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

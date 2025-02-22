@@ -1,0 +1,12 @@
+api_login_check:
+    path: /api/v1/authentication
+    methods: POST
+
+api_refresh_token:
+    path: /api/v1/authentication
+    methods: PUT
+
+api_user:
+    resource: ../src/User/Infrastructure/Symfony/Controller
+    type: attribute
+    prefix: /api
