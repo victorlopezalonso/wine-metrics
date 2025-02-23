@@ -44,7 +44,7 @@ readonly class ExceptionListener
         return match (true) {
             $throwable instanceof DomainException,
             $throwable instanceof InfrastructureException => $this->translator->trans($throwable->getMessage()),
-            $throwable instanceof BadRequestHttpException,
+            $throwable instanceof BadRequestHttpException => $throwable->getMessage(),
             $throwable instanceof UnprocessableEntityHttpException, => $this->getMessageFromUnprocessable($throwable),
             $throwable instanceof AccessDeniedHttpException => $this->translator->trans(self::FORBIDDEN_ERROR_MESSAGE),
             default => $this->translator->trans(self::DEFAULT_ERROR_MESSAGE),

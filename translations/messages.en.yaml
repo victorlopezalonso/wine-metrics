@@ -3,9 +3,11 @@ exception:
   unauthorized: "Unauthorized"
   forbidden: "Access denied"
   user_already_exists: "User already exists"
+  sensor_already_exists: "Sensor already exists"
 
 error:
   internal_server_error: 'Internal server error'
 
 message:
   user_created: "User created successfully"
+  sensor_created: "Sensor created successfully"

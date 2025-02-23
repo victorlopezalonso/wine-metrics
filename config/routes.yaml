@@ -10,3 +10,9 @@ api_user:
     resource: ../src/User/Infrastructure/Symfony/Controller
     type: attribute
     prefix: /api
+
+api_sensor:
+    resource: ../src/Sensor/Infrastructure/Symfony/Controller
+    type: attribute
+    prefix: /api
+    

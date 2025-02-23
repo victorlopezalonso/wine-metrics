@@ -148,7 +148,7 @@ The API documentation is available at the following URL:
 - [x] Authentication: Refresh the JWT
 - [x] User management: Create a new user
 - [x] User management: List all users
-- [ ] User management: Get the authenticated user profile
+- [x] User management: Get the authenticated user profile
 - [ ] Sensor management: Register a new sensor
 - [ ] Sensor management: Get all sensors ordered by name
 - [ ] Measurement management: Register a new wine measurement

@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context;
 
+use App\Tests\DataFixtures\SensorFixtures;
 use App\Tests\DataFixtures\UserFixtures;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\DataFixtures\Loader;
@@ -23,7 +24,9 @@ readonly class BehatContext implements Context
     public function loadFixtures(): void
     {
         $loader = new Loader();
+
         $loader->addFixture(new UserFixtures($this->passwordHasher));
+        $loader->addFixture(new SensorFixtures());
 
         $purger = new ORMPurger();
         $purger->setEntityManager($this->entityManager);

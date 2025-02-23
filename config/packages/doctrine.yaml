@@ -31,6 +31,12 @@ doctrine:
                 prefix: App\Shared\Infrastructure\Symfony\Entity
                 type: attribute
 
+            Sensor:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Sensor/Infrastructure/Doctrine/Mapping'
+                prefix: App\Sensor\Domain\Entity
+
         controller_resolver:
             auto_mapping: true
 
