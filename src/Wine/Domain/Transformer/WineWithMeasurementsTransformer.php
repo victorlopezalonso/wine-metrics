@@ -8,9 +8,13 @@ class WineWithMeasurementsTransformer extends WineTransformer
 {
     private function getTransformedMeasurements(): array
     {
+        if (!is_iterable($this->wine->measurements)) {
+            return [];
+        }
+
         $measurements = [];
 
-        foreach ($this->wine?->measurements as $measurement) {
+        foreach ($this->wine->measurements as $measurement) {
             $measurements[] = new MeasurementTransformer($measurement);
         }
 

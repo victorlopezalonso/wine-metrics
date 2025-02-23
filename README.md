@@ -154,7 +154,6 @@ The API documentation is available at the following URL:
 - [x] Create and populate the database with the necessary wine data
 - [x] Measurement management: Register a new wine measurement
 - [x] Measurement management: Get all wines with their measurements
-- [ ] Add an endpoint to get the list of wines without measurements (for the frontend)
 
 📌 Future Enhancements
 - [ ] Add logs
