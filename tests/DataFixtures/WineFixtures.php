@@ -8,6 +8,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class WineFixtures extends Fixture
 {
+    public const EXISTING_WINE_REFERENCE = 'existing_wine';
+
     public function load(ObjectManager $manager): void
     {
         $wine = new Wine(
@@ -17,7 +19,8 @@ class WineFixtures extends Fixture
         );
 
         $manager->persist($wine);
-
         $manager->flush();
+
+        $this->addReference(self::EXISTING_WINE_REFERENCE, $wine);
     }
 }

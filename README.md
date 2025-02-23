@@ -109,12 +109,12 @@ The API documentation is available at the following URL:
 ---
 
 ### 📡 Sensor & Measurement Management
-| Method   | Endpoint               | Description                                    | Security |
-|----------|------------------------|------------------------------------------------|----------|
-| **POST** | `/api/v1/sensors`      | Register a new sensor                          | 🔒 Secured (Any Role) |
-| **GET**  | `/api/v1/sensors`      | Get all sensors ordered by name                | 🔒 Secured (Any Role) |
-| **GET**  | `/api/v1/wines`        | Get all wines with their measurements          | 🔒 Secured (Any Role) |
-| **POST** | `/api/v1/measurements` | Register a new wine measurement                | 🔒 Secured (Any Role) |
+| Method   | Endpoint                              | Description                                    | Security |
+|----------|---------------------------------------|------------------------------------------------|----------|
+| **POST** | `/api/v1/sensors`                     | Register a new sensor                          | 🔒 Secured (Any Role) |
+| **GET**  | `/api/v1/sensors`                     | Get all sensors ordered by name                | 🔒 Secured (Any Role) |
+| **GET**  | `/api/v1/wines?withMeasurements=bool` | Get all wines with their measurements          | 🔒 Secured (Any Role) |
+| **POST** | `/api/v1/measurements`                | Register a new wine measurement                | 🔒 Secured (Any Role) |
 
 ---
 
@@ -153,8 +153,7 @@ The API documentation is available at the following URL:
 - [x] Sensor management: Get all sensors ordered by name
 - [x] Create and populate the database with the necessary wine data
 - [x] Measurement management: Register a new wine measurement
-- [ ] Measurement management: Get all wines with their measurements
-- [ ] Add an endpoint to get the list of wines without measurements (for the frontend)
+- [x] Measurement management: Get all wines with their measurements
 
 📌 Future Enhancements
 - [ ] Add logs

@@ -8,6 +8,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class SensorFixtures extends Fixture
 {
+    public const EXISTING_SENSOR_REFERENCE = 'existing_sensor';
+
     public function load(ObjectManager $manager): void
     {
         $sensor = new Sensor(
@@ -16,7 +18,8 @@ class SensorFixtures extends Fixture
         );
 
         $manager->persist($sensor);
-
         $manager->flush();
+
+        $this->addReference(self::EXISTING_SENSOR_REFERENCE, $sensor);
     }
 }
