@@ -4,6 +4,8 @@ exception:
   forbidden: "Acceso denegado"
   user_already_exists: "El usuario ya existe"
   sensor_already_exists: "El sensor ya existe"
+  sensor_not_found: "El sensor no existe"
+  wine_not_found: "El vino no existe"
 
 error:
   internal_server_error: 'Se ha producido un error interno en el servidor'
@@ -11,3 +13,4 @@ error:
 message:
   user_created: "Usuario creado correctamente"
   sensor_created: "Sensor creado correctamente"
+  measurement_created: "Medición creada correctamente"

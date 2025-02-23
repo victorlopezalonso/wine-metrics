@@ -21,3 +21,9 @@ api_sensor:
 #    resource: ../src/Wine/Infrastructure/Symfony/Controller
 #    type: attribute
 #    prefix: /api
+
+api_measurement:
+    resource: ../src/Measurement/Infrastructure/Symfony/Controller
+    type: attribute
+    prefix: /api
+    
