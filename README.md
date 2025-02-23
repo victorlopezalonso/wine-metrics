@@ -157,7 +157,7 @@ The API documentation is available at the following URL:
 - [x] Add Symfony logs
 - [x] Add Swagger OpenAPI response examples
 
-  📌 Future Enhancements
+### 📌 Future Enhancements
 - [ ] Run Symfony Messenger inside Docker
 - [ ] Symfony Cache
 - [ ] Symfony Mailer for sending confirmation emails
