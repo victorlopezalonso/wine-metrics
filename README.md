@@ -151,7 +151,7 @@ The API documentation is available at the following URL:
 - [x] User management: Get the authenticated user profile
 - [x] Sensor management: Register a new sensor
 - [x] Sensor management: Get all sensors ordered by name
-- [ ] Create and populate the database with the necessary wine data
+- [x] Create and populate the database with the necessary wine data
 - [ ] Measurement management: Register a new wine measurement
 - [ ] Measurement management: Get all wines with their measurements
 
