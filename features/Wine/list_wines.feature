@@ -22,4 +22,4 @@ Feature:
     And the response should contain "measurements"
     And the response should contain "value"
     And the response should contain "unit"
-    And the response should contain "date"
+    And the response should contain "createdAt"

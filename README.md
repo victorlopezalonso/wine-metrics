@@ -154,9 +154,10 @@ The API documentation is available at the following URL:
 - [x] Create command to populate the database with the necessary wine data
 - [x] Measurement management: Register a new wine measurement
 - [x] Measurement management: Get all wines with their measurements
+- [x] Add Symfony logs
+- [x] Add Swagger OpenAPI response examples
 
-📌 Future Enhancements
-- [ ] Add logs
+  📌 Future Enhancements
 - [ ] Run Symfony Messenger inside Docker
 - [ ] Symfony Cache
 - [ ] Symfony Mailer for sending confirmation emails

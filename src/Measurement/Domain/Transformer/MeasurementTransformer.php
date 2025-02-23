@@ -16,7 +16,7 @@ class MeasurementTransformer extends AbstractTransformer
         return [
             'value' => $this->measurement->value,
             'unit' => $this->measurement->unit,
-            'date' => $this->measurement->createdAt->format('Y-m-d H:i:s'),
+            'createdAt' => $this->measurement->createdAt->format('Y-m-d H:i:s'),
         ];
     }
 }
