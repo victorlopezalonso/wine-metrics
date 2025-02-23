@@ -13,7 +13,7 @@ use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class GetUsersQueryHandlerTest extends TestCase
+class ListUsersQueryHandlerTest extends TestCase
 {
     private MockObject $userRepository;
     private MockObject $userTransformer;

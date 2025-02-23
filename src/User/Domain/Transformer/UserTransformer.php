@@ -16,6 +16,8 @@ class UserTransformer extends AbstractTransformer
         return [
             'id' => $this->user->id,
             'name' => $this->user->name,
+            'email' => $this->user->email,
+            'roles' => $this->user->roles,
             'createdAt' => $this->user->createdAt->format('Y-m-d H:i:s'),
         ];
     }

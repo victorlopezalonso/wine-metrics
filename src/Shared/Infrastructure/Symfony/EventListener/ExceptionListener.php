@@ -45,10 +45,17 @@ readonly class ExceptionListener
             $throwable instanceof DomainException,
             $throwable instanceof InfrastructureException => $this->translator->trans($throwable->getMessage()),
             $throwable instanceof BadRequestHttpException,
-            $throwable instanceof UnprocessableEntityHttpException, => $throwable->getMessage(),
+            $throwable instanceof UnprocessableEntityHttpException, => $this->getMessageFromUnprocessable($throwable),
             $throwable instanceof AccessDeniedHttpException => $this->translator->trans(self::FORBIDDEN_ERROR_MESSAGE),
             default => $this->translator->trans(self::DEFAULT_ERROR_MESSAGE),
         };
+    }
+
+    protected function getMessageFromUnprocessable(UnprocessableEntityHttpException $exception): string
+    {
+        $missingField = explode('.', explode("\n", $exception->getPrevious()->getMessage())[0])[1];
+
+        return $missingField . ' ' . $exception->getMessage();
     }
 
     public function onKernelException(ExceptionEvent $event): void

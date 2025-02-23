@@ -42,12 +42,12 @@ if [ -z "$CONTAINER_NAME" ]; then
     echo_color "🖥️ Running tests locally.." $COLOR_GREEN
 
     ./vendor/bin/phpunit
-    ./vendor/bin/behat
+    ./vendor/bin/behat --stop-on-failure
     exit
 fi
 
 echo_color "🐳 Running tests in docker container.." $COLOR_GREEN
 
 docker exec -t "$CONTAINER_NAME" ./vendor/bin/phpunit
-docker exec -t "$CONTAINER_NAME" ./vendor/bin/behat
+docker exec -t "$CONTAINER_NAME" ./vendor/bin/behat --stop-on-failure
 exit
