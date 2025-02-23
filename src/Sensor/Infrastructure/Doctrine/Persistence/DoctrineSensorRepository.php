@@ -32,7 +32,7 @@ class DoctrineSensorRepository extends ServiceEntityRepository implements Sensor
 
     public function all(): array
     {
-        return $this->findAll();
+        return $this->findBy([], ['name' => 'ASC']);
     }
 
     public function delete(Sensor $entity): void
