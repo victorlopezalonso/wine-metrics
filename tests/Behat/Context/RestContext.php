@@ -169,4 +169,32 @@ final class RestContext implements Context
             throw new \Exception("Response does not contain key '$name'");
         }
     }
+
+    /**
+     * @Then the response should contain :text
+     */
+    public function theResponseShouldContain(string $text): void
+    {
+        if (null === $this->response) {
+            throw new \RuntimeException('No response received');
+        }
+
+        if (false === str_contains($this->response->getContent(), $text)) {
+            throw new \RuntimeException(sprintf('Response does not contain text "%s"', $text));
+        }
+    }
+
+    /**
+     * @Then the response should not contain :text
+     */
+    public function theResponseShouldNotContain(string $text): void
+    {
+        if (null === $this->response) {
+            throw new \RuntimeException('No response received');
+        }
+
+        if (true === str_contains($this->response->getContent(), $text)) {
+            throw new \RuntimeException(sprintf('Response contains text "%s"', $text));
+        }
+    }
 }

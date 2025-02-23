@@ -12,6 +12,7 @@ Feature:
       Then the JSON node "email" should exist
       Then the JSON node "roles" should exist
       Then the JSON node "createdAt" should exist
+      Then the response should not contain "password"
 
   Scenario: It receives an unauthorized response for a non-authenticated user
       When I send a GET request to "/api/v1/users/me"
