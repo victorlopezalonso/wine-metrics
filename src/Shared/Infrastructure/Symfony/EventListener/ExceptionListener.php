@@ -8,6 +8,7 @@ use App\Shared\Domain\Exception\UnauthorizedException;
 use App\Shared\Domain\Exception\ValidationException;
 use App\Shared\Infrastructure\Exception\InfrastructureException;
 use App\Shared\Infrastructure\Symfony\Exception\ExceptionResponse;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -23,8 +24,10 @@ readonly class ExceptionListener
     public const DEFAULT_ERROR_MESSAGE = 'error.internal_server_error';
     public const FORBIDDEN_ERROR_MESSAGE = 'exception.forbidden';
 
-    public function __construct(private TranslatorInterface $translator)
-    {
+    public function __construct(
+        private LoggerInterface $logger,
+        private TranslatorInterface $translator,
+    ) {
     }
 
     private function getStatusCode(\Throwable $exception): int
@@ -58,6 +61,11 @@ readonly class ExceptionListener
         return $missingField . ' ' . $exception->getMessage();
     }
 
+    protected function logException(ExceptionResponse $exceptionResponse): void
+    {
+        $this->logger->error($exceptionResponse->toJsonResponse());
+    }
+
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
@@ -77,6 +85,8 @@ readonly class ExceptionListener
             file: $exception->getFile(),
             line: $exception->getLine()
         );
+
+        Response::HTTP_INTERNAL_SERVER_ERROR === $statusCode && $this->logException($exceptionResponse);
 
         $response->setStatusCode($statusCode);
         $response->setContent($exceptionResponse->toJsonResponse());
