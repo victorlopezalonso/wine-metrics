@@ -43,6 +43,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Wine/Infrastructure/Doctrine/Mapping'
                 prefix: App\Wine\Domain\Entity
 
+            Measurement:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Measurement/Infrastructure/Doctrine/Mapping'
+                prefix: App\Measurement\Domain\Entity
+
         controller_resolver:
             auto_mapping: true
 

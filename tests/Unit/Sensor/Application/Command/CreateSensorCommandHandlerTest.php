@@ -24,9 +24,7 @@ class CreateSensorCommandHandlerTest extends TestCase
     {
         $sensorRepository = $this->createMock(SensorRepositoryInterface::class);
         $createSensorCommandHandler = new CreateSensorCommandHandler($sensorRepository);
-        $sensor = $this->createMock(Sensor::class);
-
-        $sensor->name = 'test-sensor-name';
+        $sensor = new Sensor(name: 'test-sensor-name');
 
         $sensorRepository
             ->method('findByName')
@@ -49,9 +47,7 @@ class CreateSensorCommandHandlerTest extends TestCase
     {
         $sensorRepository = $this->createMock(SensorRepositoryInterface::class);
         $createSensorCommandHandler = new CreateSensorCommandHandler($sensorRepository);
-        $sensor = $this->createMock(Sensor::class);
-
-        $sensor->name = 'existing-sensor-name';
+        $sensor = new Sensor(name: 'test-sensor-name');
 
         $sensorRepository
             ->expects($this->never())

@@ -2,20 +2,21 @@
 
 namespace App\Tests\DataFixtures;
 
-use App\Sensor\Domain\Entity\Sensor;
+use App\Wine\Domain\Entity\Wine;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class SensorFixtures extends Fixture
+class WineFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $sensor = new Sensor(
+        $wine = new Wine(
             id: 1,
-            name: 'existing_sensor',
+            name: 'existing_wine',
+            year: 2020,
         );
 
-        $manager->persist($sensor);
+        $manager->persist($wine);
 
         $manager->flush();
     }

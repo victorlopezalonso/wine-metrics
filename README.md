@@ -152,8 +152,9 @@ The API documentation is available at the following URL:
 - [x] Sensor management: Register a new sensor
 - [x] Sensor management: Get all sensors ordered by name
 - [x] Create and populate the database with the necessary wine data
-- [ ] Measurement management: Register a new wine measurement
+- [x] Measurement management: Register a new wine measurement
 - [ ] Measurement management: Get all wines with their measurements
+- [ ] Add an endpoint to get the list of wines without measurements (for the frontend)
 
 📌 Future Enhancements
 - [ ] Add logs

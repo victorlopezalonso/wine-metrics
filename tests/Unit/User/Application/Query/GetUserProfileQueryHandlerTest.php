@@ -33,7 +33,7 @@ class GetUserProfileQueryHandlerTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testItReturnsAListOfUsers(): void
+    public function testItReturnsAUserProfile(): void
     {
         $user = $this->createMock(User::class);
         $userTransformer = $this->createMock(UserTransformer::class);
