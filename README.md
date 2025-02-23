@@ -155,6 +155,7 @@ The API documentation is available at the following URL:
 - [x] Measurement management: Register a new wine measurement
 - [x] Measurement management: Get all wines with their measurements
 - [x] Add Symfony logs
+- [x] Add Swagger OpenAPI response examples
 
   📌 Future Enhancements
 - [ ] Run Symfony Messenger inside Docker

@@ -52,7 +52,7 @@ class WineListWithMeasurementsController extends AbstractApiController
                                         properties: [
                                             new Property(property: 'value', type: 'string', example: '12.5'),
                                             new Property(property: 'unit', type: 'string', example: 'ºC'),
-                                            new Property(property: 'date', type: 'string', format: 'date-time', example: '2024-02-23 14:00:00'),
+                                            new Property(property: 'createdAt', type: 'string', format: 'date-time', example: '2024-02-23 14:00:00'),
                                         ],
                                         type: 'object'
                                     )),
