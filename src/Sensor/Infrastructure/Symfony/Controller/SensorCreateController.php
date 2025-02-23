@@ -1,10 +1,10 @@
 <?php
 
-namespace App\User\Infrastructure\Symfony\Controller;
+namespace App\Sensor\Infrastructure\Symfony\Controller;
 
+use App\Sensor\Application\Command\CreateSensor\CreateSensorCommand;
+use App\Sensor\Infrastructure\Symfony\Http\Request\CreateSensorRequest;
 use App\Shared\Infrastructure\Symfony\Controller\AbstractApiController;
-use App\User\Application\Command\CreateUser\CreateUserCommand;
-use App\User\Infrastructure\Symfony\Http\Request\CreateUserRequest;
 use Nelmio\ApiDocBundle\Attribute\Model;
 use OpenApi\Attributes\JsonContent;
 use OpenApi\Attributes\Post;
@@ -18,39 +18,36 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CreateUserController extends AbstractApiController
+class SensorCreateController extends AbstractApiController
 {
-    public function __construct(MessageBusInterface $messageBus, private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        MessageBusInterface $messageBus,
+        private readonly TranslatorInterface $translator,
+    ) {
         parent::__construct($messageBus);
     }
 
     /**
      * @throws ExceptionInterface
      */
-    #[Tag(name: 'User')]
-    #[Route('/v1/users', name: 'create_user', methods: ['POST'])]
+    #[Tag(name: 'Sensor')]
+    #[Route('/v1/sensors', name: 'sensor_create', methods: ['POST'])]
     #[Post(
-        summary: 'Creates a new user.',
+        summary: 'Creates a new sensor.',
         requestBody: new RequestBody(
             content: new JsonContent(
-                ref: new Model(type: CreateUserRequest::class)
+                ref: new Model(type: CreateSensorRequest::class)
             )
         ),
     )]
-    public function index(
-        #[MapRequestPayload] CreateUserRequest $request,
-    ): JsonResponse {
+    public function index(#[MapRequestPayload] CreateSensorRequest $request): JsonResponse
+    {
         $this->handleMessage(
-            new CreateUserCommand(
-                name: $request->name,
-                email: $request->email,
-                password: $request->password,
-            )
+            message: new CreateSensorCommand($request->name)
         );
 
         return $this->json(
-            data: ['message' => $this->translator->trans('message.user_created')],
+            data: ['message' => $this->translator->trans('message.sensor_created')],
             status: Response::HTTP_CREATED
         );
     }

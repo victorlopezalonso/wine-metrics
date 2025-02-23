@@ -6,7 +6,7 @@ COLOR_GREEN='\033[0;32m'
 COLOR_DEFAULT='\033[0m'
 COLOR_RED='\033[0;31m'
 
-CONTAINER_NAME=$(docker ps --format "{{.Names}}" | grep -E 'app|wine-metrics' | head -n 1)
+CONTAINER_NAME=$(docker ps --format "{{.Names}}" | grep -E '_app' | head -n 1)
 
 set -e
 
@@ -42,12 +42,12 @@ if [ -z "$CONTAINER_NAME" ]; then
     echo_color "🖥️ Running tests locally.." $COLOR_GREEN
 
     ./vendor/bin/phpunit
-    ./vendor/bin/behat
+    ./vendor/bin/behat --stop-on-failure
     exit
 fi
 
 echo_color "🐳 Running tests in docker container.." $COLOR_GREEN
 
 docker exec -t "$CONTAINER_NAME" ./vendor/bin/phpunit
-docker exec -t "$CONTAINER_NAME" ./vendor/bin/behat
+docker exec -t "$CONTAINER_NAME" ./vendor/bin/behat --stop-on-failure
 exit

@@ -4,6 +4,9 @@ namespace App\Shared\Domain\Pagination;
 
 readonly class Page
 {
+    public const DEFAULT_NUMBER = 1;
+    public const DEFAULT_RESULTS_PER_PAGE = 10;
+
     public function __construct(public int $number, public int $results)
     {
         $this->asserts();
@@ -17,7 +20,7 @@ readonly class Page
 
     public static function default(): self
     {
-        return new self(1, 10);
+        return new self(self::DEFAULT_NUMBER, self::DEFAULT_RESULTS_PER_PAGE);
     }
 
     public function offset(): int

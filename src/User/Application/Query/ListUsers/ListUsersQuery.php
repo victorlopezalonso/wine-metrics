@@ -1,10 +1,10 @@
 <?php
 
-namespace App\User\Application\Query\GetUsers;
+namespace App\User\Application\Query\ListUsers;
 
 use App\Shared\Domain\Pagination\Page;
 
-readonly class GetUsersQuery
+readonly class ListUsersQuery
 {
     public function __construct(public Page $page)
     {

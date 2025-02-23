@@ -47,7 +47,7 @@ security:
     access_control:
         - { path: ^/api/v1/authentication, roles: PUBLIC_ACCESS }
         - { path: ^/api/v1/users, method: POST, roles: PUBLIC_ACCESS }
-        - { path: ^/api/v1/users, method: GET, roles: ROLE_ADMIN }
+        - { path: ^/api/v1/users$, method: GET, roles: ROLE_ADMIN }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
