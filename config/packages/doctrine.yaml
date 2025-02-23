@@ -37,6 +37,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Sensor/Infrastructure/Doctrine/Mapping'
                 prefix: App\Sensor\Domain\Entity
 
+            Wine:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Wine/Infrastructure/Doctrine/Mapping'
+                prefix: App\Wine\Domain\Entity
+
         controller_resolver:
             auto_mapping: true
 
