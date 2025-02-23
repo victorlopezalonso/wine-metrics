@@ -18,7 +18,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CreateUserController extends AbstractApiController
+class UserCreateController extends AbstractApiController
 {
     public function __construct(MessageBusInterface $messageBus, private readonly TranslatorInterface $translator)
     {

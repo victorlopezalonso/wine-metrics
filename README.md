@@ -62,43 +62,35 @@ WineMetrics is a highly modular and maintainable API designed to manage and trac
 
     composer install
 
-4️⃣ Run database migrations
+4️⃣ Generate the SSL keys for JWT
+
+    php bin/console lexik:jwt:generate-keypair
+
+5️⃣ Run database migrations
 
     php bin/console doctrine:migrations:migrate
     php bin/console doctrine:migrations:migrate --env=test
 
-5️⃣ Start the server
-
+6️⃣ Start the server
+    
     symfony server:start
 
-6️⃣ Generate the SSL keys for JWT
-
-    php bin/console lexik:jwt:generate-keypair
-
 ### 🐳 Docker
+
+Update the database host in your .env local files to match the database container name.
+
+    DATABASE_URL="mysql://app:!ChangeMe!@database:3306/app?serverVersion=8.0.32&charset=utf8mb4"
+    DATABASE_URL="mysql://app:!ChangeMe!@database_test:3306/app?serverVersion=8.0.32&charset=utf8mb4"
 
 To run the project using Docker, you need to have Docker and Docker Compose installed on your machine.
 
     docker-compose up --build -d
 
-### Consuming asynchronous services
-
-In order to consume asynchronous services, you need to run the following command:
-
-    php bin/console messenger:consume async -vv
-
-### Run the tests
-This script will look for the docker container and run the tests inside it. If the container is not found, it will run the tests locally.
+### 🧪 Run the Tests
+This script will automatically detect if the application is running inside a **Docker container** and execute the tests within it.  
+If no container is found, the tests will be executed **locally** on your machine.
 
     composer test
-
-### Create a new feature 
-
-To create a new feature, run the following command and follow the instructions.
-
-    php bin/console ddd:feature:create
-
-This will create the files all the necessary files for a new feature including the entity, repository, controller, service, etc.
 
 ### 📚 Swagger Documentation
 The API documentation is available at the following URL:
@@ -165,8 +157,8 @@ The API documentation is available at the following URL:
 📌 Future Enhancements
 - [ ] Add logs
 - [ ] Docker Messenger
-- [ ] Symfony Mailer for sending confirmation emails
 - [ ] Symfony Cache
+- [ ] Symfony Mailer for sending confirmation emails
+- [ ] Add caching for frequently requested data, like wine and sensor lists.
 - [ ] Update the endpoint to get the list of wines without measurements.
 - [ ] Create a new endpoint to get a single wine with its measurements.
-- [ ] Add caching for frequently requested data, like wine and sensor lists.

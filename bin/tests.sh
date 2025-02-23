@@ -6,7 +6,7 @@ COLOR_GREEN='\033[0;32m'
 COLOR_DEFAULT='\033[0m'
 COLOR_RED='\033[0;31m'
 
-CONTAINER_NAME=$(docker ps --format "{{.Names}}" | grep -E 'app|wine-metrics' | head -n 1)
+CONTAINER_NAME=$(docker ps --format "{{.Names}}" | grep -E '_app' | head -n 1)
 
 set -e
 

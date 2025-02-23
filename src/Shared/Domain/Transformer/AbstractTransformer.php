@@ -5,7 +5,7 @@ namespace App\Shared\Domain\Transformer;
 use App\Shared\Domain\Pagination\PaginatedCollection;
 use App\Shared\Domain\Pagination\PaginationInterface;
 
-abstract class DomainAbstractTransformer implements \JsonSerializable
+abstract class AbstractTransformer implements \JsonSerializable
 {
     public function transform(object $item): array
     {

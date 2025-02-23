@@ -4,7 +4,7 @@ namespace App\User\Infrastructure\Symfony\Controller;
 
 use App\Shared\Domain\Pagination\Page;
 use App\Shared\Infrastructure\Symfony\Controller\AbstractApiController;
-use App\User\Application\Query\GetUsers\GetUsersQuery;
+use App\User\Application\Query\ListUsers\ListUsersQuery;
 use OpenApi\Attributes\Get;
 use OpenApi\Attributes\Parameter;
 use OpenApi\Attributes\Schema;
@@ -14,13 +14,13 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GetUsersController extends AbstractApiController
+class UserListController extends AbstractApiController
 {
     /**
      * @throws ExceptionInterface
      */
     #[Tag(name: 'User')]
-    #[Route('/v1/users', name: 'get_users', methods: ['GET'])]
+    #[Route('/v1/users', name: 'user_list', methods: ['GET'])]
     #[Get(
         summary: 'Returns a list of users.',
         parameters: [
@@ -33,7 +33,7 @@ class GetUsersController extends AbstractApiController
         #[MapQueryParameter] ?int $count = 10,
     ): JsonResponse {
         return $this->handleWithResponse(
-            new GetUsersQuery(new Page($page, $count)),
+            new ListUsersQuery(new Page($page, $count)),
         );
     }
 }
