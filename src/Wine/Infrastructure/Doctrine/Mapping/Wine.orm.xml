@@ -13,5 +13,7 @@
         <unique-constraints>
             <unique-constraint columns="name,year"/>
         </unique-constraints>
+
+        <one-to-many field="measurements" target-entity="App\Measurement\Domain\Entity\Measurement" mapped-by="wine" />
     </entity>
 </doctrine-mapping>

@@ -8,6 +8,7 @@ class Wine
         public ?int $id = null,
         public ?string $name = null,
         public ?int $year = null,
+        public ?\ArrayAccess $measurements = null,
     ) {
     }
 }

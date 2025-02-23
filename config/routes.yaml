@@ -16,11 +16,10 @@ api_sensor:
     type: attribute
     prefix: /api
 
-# Commented out because it's not in the scope of this project
-#api_wine:
-#    resource: ../src/Wine/Infrastructure/Symfony/Controller
-#    type: attribute
-#    prefix: /api
+api_wine:
+    resource: ../src/Wine/Infrastructure/Symfony/Controller
+    type: attribute
+    prefix: /api
 
 api_measurement:
     resource: ../src/Measurement/Infrastructure/Symfony/Controller

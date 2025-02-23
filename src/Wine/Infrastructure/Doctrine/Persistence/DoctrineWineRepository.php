@@ -2,6 +2,8 @@
 
 namespace App\Wine\Infrastructure\Doctrine\Persistence;
 
+use App\Shared\Domain\Pagination\Page;
+use App\Shared\Infrastructure\Doctrine\Pagination\DoctrinePagination;
 use App\Wine\Domain\Entity\Wine;
 use App\Wine\Domain\Repository\WineRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -30,9 +32,21 @@ class DoctrineWineRepository extends ServiceEntityRepository implements WineRepo
         return $this->findOneBy(['name' => $name, 'year' => $year]);
     }
 
-    public function all(): array
+    public function all(Page $page, bool $withMeasurements): DoctrinePagination
     {
-        return $this->findAll();
+        $queryBuilder = $this->createQueryBuilder('wines');
+
+        if ($withMeasurements) {
+            $queryBuilder
+                ->leftJoin('wines.measurements', 'measurements')
+                ->addSelect('measurements');
+        }
+
+        $query = $queryBuilder
+            ->orderBy('wines.name', 'asc')
+            ->getQuery();
+
+        return new DoctrinePagination($query, $page);
     }
 
     public function delete(Wine $entity): void

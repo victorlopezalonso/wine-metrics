@@ -2,6 +2,8 @@
 
 namespace App\Wine\Domain\Repository;
 
+use App\Shared\Domain\Pagination\Page;
+use App\Shared\Domain\Pagination\PaginationInterface;
 use App\Wine\Domain\Entity\Wine;
 
 interface WineRepositoryInterface
@@ -12,7 +14,7 @@ interface WineRepositoryInterface
 
     public function findByNameAndYear(string $name, int $year): ?Wine;
 
-    public function all(): array;
+    public function all(Page $page, bool $withMeasurements): PaginationInterface;
 
     public function delete(Wine $entity): void;
 }
