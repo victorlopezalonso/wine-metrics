@@ -4,7 +4,7 @@ namespace App\Wine\Infrastructure\Symfony\Controller;
 
 use App\Shared\Domain\Pagination\Page;
 use App\Shared\Infrastructure\Symfony\Controller\AbstractApiController;
-use App\Wine\Application\Query\GetWinesWithMeasurements\GetWinesWithMeasurementsQuery;
+use App\Wine\Application\Query\ListWines\ListWinesQuery;
 use OpenApi\Attributes\Get;
 use OpenApi\Attributes\Parameter;
 use OpenApi\Attributes\Schema;
@@ -35,7 +35,7 @@ class WineListWithMeasurementsController extends AbstractApiController
         #[MapQueryParameter] ?bool $withMeasurements = false,
     ): JsonResponse {
         return $this->handleWithResponse(
-            new GetWinesWithMeasurementsQuery(
+            new ListWinesQuery(
                 page: new Page($page, $count),
                 withMeasurements: $withMeasurements
             )

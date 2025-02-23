@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Wine\Application\Query\GetWinesWithMeasurements;
+namespace App\Wine\Application\Query\ListWines;
 
 use App\Shared\Domain\Bus\HandlerInterface;
 use App\Shared\Domain\Pagination\PaginatedCollection;
@@ -8,7 +8,7 @@ use App\Wine\Domain\Repository\WineRepositoryInterface;
 use App\Wine\Domain\Transformer\WineTransformer;
 use App\Wine\Domain\Transformer\WineWithMeasurementsTransformer;
 
-readonly class GetWinesWithMeasurementsQueryHandler implements HandlerInterface
+readonly class ListWinesQueryHandler implements HandlerInterface
 {
     public function __construct(
         private WineRepositoryInterface $wineRepository,
@@ -17,7 +17,7 @@ readonly class GetWinesWithMeasurementsQueryHandler implements HandlerInterface
     ) {
     }
 
-    public function __invoke(GetWinesWithMeasurementsQuery $query): PaginatedCollection
+    public function __invoke(ListWinesQuery $query): PaginatedCollection
     {
         $wines = $this->wineRepository->all($query->page, $query->withMeasurements);
 
