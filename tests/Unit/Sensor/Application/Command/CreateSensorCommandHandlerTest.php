@@ -8,13 +8,23 @@ use App\Sensor\Domain\Entity\Sensor;
 use App\Sensor\Domain\Repository\SensorRepositoryInterface;
 use App\Sensor\Exception\SensorAlreadyExistsException;
 use PHPUnit\Framework\MockObject\Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CreateSensorCommandHandlerTest extends TestCase
 {
+    private MockObject $sensorRepository;
+    private CreateSensorCommandHandler $createSensorCommandHandler;
+
+    /**
+     * @throws Exception
+     */
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->sensorRepository = $this->createMock(SensorRepositoryInterface::class);
+        $this->createSensorCommandHandler = new CreateSensorCommandHandler($this->sensorRepository);
     }
 
     /**
@@ -22,22 +32,20 @@ class CreateSensorCommandHandlerTest extends TestCase
      */
     public function testItCreatesASensor(): void
     {
-        $sensorRepository = $this->createMock(SensorRepositoryInterface::class);
-        $createSensorCommandHandler = new CreateSensorCommandHandler($sensorRepository);
         $sensor = new Sensor(name: 'test-sensor-name');
 
-        $sensorRepository
+        $this->sensorRepository
             ->method('findByName')
             ->with($sensor->name)
             ->willReturn(null);
 
-        $sensorRepository
+        $this->sensorRepository
             ->expects($this->once())
             ->method('save');
 
         $command = new CreateSensorCommand($sensor->name);
 
-        $createSensorCommandHandler->__invoke($command);
+        $this->createSensorCommandHandler->__invoke($command);
     }
 
     /**
@@ -45,15 +53,13 @@ class CreateSensorCommandHandlerTest extends TestCase
      */
     public function testFailsToCreatesASensorWithTheSameName(): void
     {
-        $sensorRepository = $this->createMock(SensorRepositoryInterface::class);
-        $createSensorCommandHandler = new CreateSensorCommandHandler($sensorRepository);
         $sensor = new Sensor(name: 'test-sensor-name');
 
-        $sensorRepository
+        $this->sensorRepository
             ->expects($this->never())
             ->method('save');
 
-        $sensorRepository
+        $this->sensorRepository
             ->method('findByName')
             ->with($sensor->name)
             ->willReturn($sensor);
@@ -62,6 +68,6 @@ class CreateSensorCommandHandlerTest extends TestCase
 
         $command = new CreateSensorCommand($sensor->name);
 
-        $createSensorCommandHandler->__invoke($command);
+        $this->createSensorCommandHandler->__invoke($command);
     }
 }

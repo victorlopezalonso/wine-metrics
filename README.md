@@ -151,15 +151,13 @@ The API documentation is available at the following URL:
 - [x] User management: Get the authenticated user profile
 - [x] Sensor management: Register a new sensor
 - [x] Sensor management: Get all sensors ordered by name
-- [x] Create and populate the database with the necessary wine data
+- [x] Create command to populate the database with the necessary wine data
 - [x] Measurement management: Register a new wine measurement
 - [x] Measurement management: Get all wines with their measurements
 
 📌 Future Enhancements
 - [ ] Add logs
-- [ ] Docker Messenger
+- [ ] Run Symfony Messenger inside Docker
 - [ ] Symfony Cache
 - [ ] Symfony Mailer for sending confirmation emails
 - [ ] Add caching for frequently requested data, like wine and sensor lists.
-- [ ] Update the endpoint to get the list of wines without measurements.
-- [ ] Create a new endpoint to get a single wine with its measurements.

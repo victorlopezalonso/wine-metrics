@@ -7,13 +7,25 @@ use App\Sensor\Application\Query\ListSensors\ListSensorsQueryHandler;
 use App\Sensor\Domain\Repository\SensorRepositoryInterface;
 use App\Sensor\Domain\Transformer\SensorTransformer;
 use PHPUnit\Framework\MockObject\Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class ListSensorsQueryHandlerTest extends TestCase
 {
+    private ListSensorsQueryHandler $listSensorsQueryHandler;
+    private MockObject $sensorRepository;
+    private MockObject $sensorTransformer;
+
+    /**
+     * @throws Exception
+     */
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->sensorRepository = $this->createMock(SensorRepositoryInterface::class);
+        $this->sensorTransformer = $this->createMock(SensorTransformer::class);
+        $this->listSensorsQueryHandler = new ListSensorsQueryHandler($this->sensorRepository, $this->sensorTransformer);
     }
 
     /**
@@ -21,22 +33,18 @@ class ListSensorsQueryHandlerTest extends TestCase
      */
     public function testItListsSensors(): void
     {
-        $sensorRepository = $this->createMock(SensorRepositoryInterface::class);
-        $sensorTransformer = $this->createMock(SensorTransformer::class);
-        $listSensorsQueryHandler = new ListSensorsQueryHandler($sensorRepository, $sensorTransformer);
-
-        $sensorRepository
+        $this->sensorRepository
             ->expects($this->once())
             ->method('all')
             ->willReturn([]);
 
-        $sensorTransformer
+        $this->sensorTransformer
             ->expects($this->once())
             ->method('collection')
             ->willReturn([]);
 
         $query = new ListSensorsQuery();
 
-        $listSensorsQueryHandler->__invoke($query);
+        $this->listSensorsQueryHandler->__invoke($query);
     }
 }

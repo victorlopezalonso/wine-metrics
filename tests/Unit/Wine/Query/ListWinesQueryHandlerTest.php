@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class GetWinesWithMeasurementsQueryHandlerTest extends TestCase
+class ListWinesQueryHandlerTest extends TestCase
 {
     protected MockObject $wineRepository;
     protected MockObject $wineTransformer;

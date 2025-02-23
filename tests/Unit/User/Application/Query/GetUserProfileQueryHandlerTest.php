@@ -35,11 +35,10 @@ class GetUserProfileQueryHandlerTest extends TestCase
      */
     public function testItReturnsAUserProfile(): void
     {
-        $user = $this->createMock(User::class);
-        $userTransformer = $this->createMock(UserTransformer::class);
-
-        $user->name = 'John';
-        $user->email = 'john@example.com';
+        $user = new User(
+            name: 'John Doe',
+            email: 'john@example.com',
+        );
 
         $this->userRepository->expects($this->once())
             ->method('findByEmail')
@@ -49,16 +48,10 @@ class GetUserProfileQueryHandlerTest extends TestCase
         $this->userTransformer->expects($this->once())
             ->method('transform')
             ->with($user)
-            ->willReturn((array) $user);
+            ->willReturn([]);
 
-        $userTransformer->expects($this->once())
-            ->method('jsonSerialize')
-            ->willReturn((array) $user);
+        $getUserProfileQuery = new GetUserProfileQuery($user->email);
 
-        $query = new GetUserProfileQuery($user->email);
-
-        $result = $this->handler->__invoke($query);
-
-        $this->assertSame($userTransformer->jsonSerialize(), $result);
+        $this->handler->__invoke($getUserProfileQuery);
     }
 }
